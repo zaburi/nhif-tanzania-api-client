@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./art/nhif-logo.svg" width="320" alt="NHIF Tanzania API Client">
+  <img src="./art/nhif-logo.png" width="320" alt="NHIF Tanzania API Client">
 </p>
 
 # NHIF Tanzania API Client
