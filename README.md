@@ -205,10 +205,18 @@ export async function GET(request: Request) {
 - Store `AuthorizationNo` in your patient visit, invoice, lab, pharmacy, and claim records where your system needs it.
 - Never log the NHIF password or bearer token.
 
-## Credit
+Please see [CHANGELOG](https://github.com/zaburi/nhif-tanzania-api-client/blob/main/CHANGELOG.md) for more information on what has changed recently.
 
-This was inspired by the existing Laravel NHIF community work and the NHIF Service Portal flow. This package is TypeScript-first and made for current Node and Next.js systems.
+**Contributing**
+Please see [CONTRIBUTING](https://github.com/zaburi/nhif-tanzania-api-client/blob/main/CONTRIBUTING.md) for details.
 
-## License
+**Security Vulnerabilities**
+Please review [our security policy](https://github.com/zaburi/nhif-tanzania-api-client/security/policy) on how to report security vulnerabilities.
 
-MIT
+**Credits**
+[Zaburi Frolian](https://github.com/zaburi)
+[omakei](https://github.com/omakei)
+[All Contributors](https://github.com/zaburi/nhif-tanzania-api-client/contributors)
+
+**License**
+The MIT License (MIT). Please see [License File](https://github.com/zaburi/nhif-tanzania-api-client/blob/main/LICENSE) for more information.
