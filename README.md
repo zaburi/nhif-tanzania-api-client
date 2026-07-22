@@ -76,7 +76,7 @@ import { createNhifClientFromEnv } from "nhif-tanzania-api-client";
 
 const nhif = createNhifClientFromEnv(process.env);
 
-const result = await nhif.authorizeMember("19900101000000000000", {
+const result = await nhif.authorizeMember("NIDA_NUMBER_HERE", {
   identifierType: "NationalID",
 });
 
@@ -88,7 +88,7 @@ if (result.ok) {
 Authorize by NHIF card number:
 
 ```ts
-const result = await nhif.authorizeMember("100000000000", {
+const result = await nhif.authorizeMember("NHIF_CARD_NUMBER_HERE", {
   identifierType: "CardNo",
 });
 ```
@@ -96,9 +96,80 @@ const result = await nhif.authorizeMember("100000000000", {
 Check member details only:
 
 ```ts
-const member = await nhif.getCardDetails("19900101000000000000", "NationalID");
+const member = await nhif.getCardDetails("NIDA_NUMBER_HERE", "NationalID");
 
 console.log(member.FullName, member.CardStatus, member.CardNo);
+```
+
+## Response examples
+
+These examples are not real patient data. They only show the shape of the response you can expect.
+
+Successful authorization:
+
+```json
+{
+  "ok": true,
+  "authorizationNumber": "AUTHORIZATION_NUMBER_FROM_NHIF",
+  "cardNumber": "NHIF_CARD_NUMBER_FROM_NHIF",
+  "identifierType": "NationalID",
+  "data": {
+    "AuthorizationStatus": "ACCEPTED",
+    "AuthorizationNo": "AUTHORIZATION_NUMBER_FROM_NHIF",
+    "Remarks": "Verified OK",
+    "CardNo": "NHIF_CARD_NUMBER_FROM_NHIF",
+    "MembershipNo": "MEMBERSHIP_NUMBER_FROM_NHIF",
+    "FullName": "Example Patient",
+    "FirstName": "Example",
+    "MiddleName": "Middle",
+    "LastName": "Patient",
+    "Gender": "Male",
+    "DateOfBirth": "1990-01-01",
+    "CardStatus": "Active",
+    "IsValidCard": true,
+    "IsActive": true,
+    "ProductName": "Example NHIF benefit scheme"
+  }
+}
+```
+
+Member details lookup:
+
+```json
+{
+  "CardNo": "NHIF_CARD_NUMBER_FROM_NHIF",
+  "MembershipNo": "MEMBERSHIP_NUMBER_FROM_NHIF",
+  "FullName": "Example Patient",
+  "Gender": "Female",
+  "DateOfBirth": "1995-05-20",
+  "Age": 31,
+  "NationalID": "NIDA_NUMBER_FROM_NHIF",
+  "CardStatus": "Active",
+  "StatusDescription": "Active",
+  "IsValidCard": 1,
+  "IsActive": 1,
+  "AuthorizationStatus": "N/A",
+  "AuthorizationNo": "N/A",
+  "Remarks": "N/A"
+}
+```
+
+Rejected authorization:
+
+```json
+{
+  "ok": false,
+  "cardNumber": "NHIF_CARD_NUMBER_FROM_NHIF",
+  "identifierType": "CardNo",
+  "error": "NHIF did not accept this authorization request.",
+  "data": {
+    "AuthorizationStatus": "REJECTED",
+    "AuthorizationNo": "N/A",
+    "Remarks": "Example rejection reason from NHIF",
+    "CardNo": "NHIF_CARD_NUMBER_FROM_NHIF",
+    "FullName": "Example Patient"
+  }
+}
 ```
 
 ## Next.js example
